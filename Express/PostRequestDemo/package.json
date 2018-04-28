@@ -1,0 +1,15 @@
+{
+  "name": "post_and_request",
+  "version": "1.0.0",
+  "description": "A Post&Request Demo powered by Express",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tezika Zhou",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.9",
+    "express": "^4.16.3"
+  }
+}
