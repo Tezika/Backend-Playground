@@ -1,0 +1,7 @@
+<h1>Welcome to the page of posts</h1>
+
+<ul>
+    <% postArr.forEach(function(post){ %>
+        <li><%=post.title%> - <strong><%=post.author%></strong></li>
+    <% });%>
+</ul>

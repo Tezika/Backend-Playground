@@ -1,0 +1,15 @@
+{
+  "name": "ejs_demo",
+  "version": "1.0.0",
+  "description": "A Demo for me to play around with EJS :)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tezika Zhou",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.9",
+    "express": "^4.16.3"
+  }
+}
