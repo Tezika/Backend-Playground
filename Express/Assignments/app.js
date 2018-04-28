@@ -5,16 +5,22 @@ app.get("/", function(req, res) {
     res.send("Hi, welcome to my assignment!");
 });
 
-app.get("/speak/pig", function(req, res) {
-    res.send("The pig says 'Oink'.");
-});
-
-app.get("/speak/cow", function(req, res) {
-    res.send("The cow says 'Moo'.");
-});
-
-app.get("/speak/dog", function(req, res) {
-    res.send("The dog says 'Wof Wof'.");
+app.get("/speak/:animal", function(req, res) {
+    var howl = "";
+    switch(req.params.animal){
+        case "dog":
+            howl = "Wof Wof";
+            break;
+        case "cow":
+            howl = "Moo";
+            break;
+        case "pig":
+            howl = "Oink"
+            break;
+        default:
+            break;
+    }
+    res.send("The " + req.params.animal + " says "+ "'"+ howl + "'" + ".");
 });
 
 app.get("/repeat/:pattern/:count", function(req, res) {
