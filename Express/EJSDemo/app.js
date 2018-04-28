@@ -1,16 +1,17 @@
-var app = require("express")();
+var express = require("express");
 
-app.listen(process.env.PORT, process.env.IP, function() {
-    console.log("Start Service:)");
-});
+var app = express();
+
+app.use(express.static("public"));
+app.set("view engine", "ejs");
 
 app.get("/", function(req, res) {
-    res.render("home.ejs");
+    res.render("home");
 });
 
 app.get("/fallinlovewith/:thing", function(req, res) {
     var t = req.params.thing;
-    res.render("love.ejs", { thing: t });
+    res.render("love", { thing: t });
 });
 
 app.get("/posts", function(req, res) {
@@ -19,5 +20,13 @@ app.get("/posts", function(req, res) {
         { title: "And this is the second post.", author: "Violet" },
         { title: "Em, here is the last post.", author: "Jeff" },
     ];
-    res.render("posts.ejs", { postArr: posts });
+    res.render("posts", { postArr: posts });
+});
+
+app.get("*", function(req, res) {
+    res.send("Oops, the page you want to visit doesn't appear anymore!");
+});
+
+app.listen(process.env.PORT, process.env.IP, function() {
+    console.log("Start Service:)");
 });
