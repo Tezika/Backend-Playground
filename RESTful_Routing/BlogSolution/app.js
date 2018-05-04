@@ -64,6 +64,17 @@ app.post("/blogs", function(req, res) {
     });
 });
 
+app.get("/blogs/:id", function(req, res) {
+    var blog = Blog.findById(req.params.id, function(err, foundBlog) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render("show", { blog: foundBlog });
+        }
+    });
+});
+
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("The server for blog start successfully!");
 });
