@@ -6,6 +6,6 @@ i .icon {
     margin-top: 7.0em;
 }
 
-#btn_submit {
-    margin-top: 1.0em;
+#delete {
+    display: inline;
 }

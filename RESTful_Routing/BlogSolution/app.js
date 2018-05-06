@@ -1,8 +1,8 @@
-var express         = require("express"),
-    app             = express(),
-    bodyParser      = require("body-parser"),
-    mongoose        = require("mongoose"),
-    methodOverride  = require("method-override");
+var express = require("express"),
+    app = express(),
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    methodOverride = require("method-override");
 
 //APP CONFIG
 mongoose.connect("mongodb://localhost/restful_blog_app");
@@ -99,6 +99,17 @@ app.put("/blogs/:id", function(req, res) {
         }
         else {
             res.redirect("/blogs/" + req.params.id);
+        }
+    });
+});
+
+//DELETE ROUTE
+app.delete("/blogs/:id", function(req, res) {
+    Blog.findByIdAndRemove(req.params.id, function(error, removedBlog) {
+        if (error) {
+            res.redirect("/blogs/" + req.params.id);
+        } else {
+            res.redirect("/blogs");
         }
     });
 });
