@@ -65,7 +65,7 @@ app.post("/blogs", function(req, res) {
 });
 
 app.get("/blogs/:id", function(req, res) {
-    var blog = Blog.findById(req.params.id, function(err, foundBlog) {
+    Blog.findById(req.params.id, function(err, foundBlog) {
         if (err) {
             console.log(err);
         }
