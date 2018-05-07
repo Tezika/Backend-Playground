@@ -6,6 +6,17 @@ i .icon {
     margin-top: 7.0em;
 }
 
+/*Flot the actions to the right*/
+.align-right {
+    display: flex;
+    justify-content: flex-end;  
+}
+
 #delete {
     display: inline;
 }
+
+#btn_submit {
+    margin-top: 1.1em;
+}
+

@@ -6,7 +6,7 @@
         Warning
   </div>
   <div class="content">
-    <p>Do you really want delete this post? You cannot undo this one.</p>
+    <p>Do you really want to delete this post? You cannot undo it.</p>
   </div>
   <div class="actions">
     <div class="ui red basic cancel inverted button">
@@ -35,13 +35,15 @@
                 <div class="description">
                     <p><%- blog.body %></p>       
                 </div>
-                <a href="/blogs/<%= blog._id%>/edit" class="ui inverted blue button">
-                    <i class="edit outline icon"></i>
-                    Edit
-                </a>
-                <div id="btn_delete" class="ui inverted red button">
-                    <i class="trash alternate outline icon"></i>
-                    Delete
+                <div class="align-right">
+                    <a href="/blogs/<%= blog._id%>/edit" class="ui inverted blue button">
+                        <i class="edit outline icon"></i>
+                        Edit
+                    </a>
+                    <div id="btn_delete" class="ui right inverted red button">
+                        <i class="trash alternate outline icon"></i>
+                        Delete
+                    </div>
                 </div>
                 <form id="form_delete" action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
                 </form>
