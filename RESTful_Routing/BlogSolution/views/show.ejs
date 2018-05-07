@@ -6,7 +6,7 @@
         Warning
   </div>
   <div class="content">
-    <p>Do you really want to delete this post? You cannot undo it.</p>
+    <p>Do you really want to delete this post? You cannot undo it :<.</p>
   </div>
   <div class="actions">
     <div class="ui red basic cancel inverted button">
@@ -25,6 +25,13 @@
 
 <!--Container Stuff-->
 <div class="ui main text container segment">
+    <!--Message stuff temporary solution-->
+    <div class="ui top attached positive message transition hidden">
+          <div class="header">
+               Update Successfully
+          </div>
+          <p>You updated current blog successfuly right now:)</p>
+    </div>
     <div class="ui huge header"><%= blog.title %></div>
         <div class="ui top attached">
             <div class="item">
@@ -51,7 +58,7 @@
         </div>
     </div>
 </div>
-    
+
 <script>
     $('#btn_delete').click(function(){
         $('.ui.basic.modal').modal({
