@@ -2,7 +2,7 @@
 
 <div class="ui main text container segment">
     <div class="ui huge header">Edit <%= blog.title %></div>
-    <form class="ui form" action ="/blogs/<%= blog._id %>?_method=PUT", method="POST">
+    <form id="form_blog" class="ui form" action ="/blogs/<%= blog._id %>?_method=PUT", method="POST">
         <div class="field">
             <label>Title</label>
             <input type="text" name="blog[title]" value="<%= blog.title%>"></input>     
@@ -14,9 +14,18 @@
         <div class="field">
             <label>Content</label>
             <textarea name="blog[body]"><%=blog.body%>></textarea>    
-            <button class="positive ui button">Submit</button>
+            <div id="btn_submit" class="ui inverted green button">
+                <i class="paper plane outline icon"></i>
+                Submit
+            </div>
         </div>
     </form>
 </div>
+
+<script>
+    $('#btn_submit').click(function(){
+        $('#form_blog').submit();
+    });
+</script>
 
 <% include partials/footer%>

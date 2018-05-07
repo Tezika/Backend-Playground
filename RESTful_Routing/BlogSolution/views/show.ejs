@@ -1,28 +1,66 @@
 <% include partials/header %>
 
-    <div class="ui negative message">
-      <i class="close icon"></i>
-      <div class="header">
-        We're sorry we can't apply that discount
-      </div>
-      <p>That offer has expired</p>
+<!--Modal Stuff-->
+<div class="ui basic modal">
+  <div class="header">
+        Warning
+  </div>
+  <div class="content">
+    <p>Do you really want delete this post? You cannot undo this one.</p>
+  </div>
+  <div class="actions">
+    <div class="ui red basic cancel inverted button">
+        <i class="remove icon"></i>
+        No
     </div>
+    <div class="ui green basic ok inverted button">
+        <i class="checkmark icon"></i>
+        Yes
+    </div>
+  </div>
+</div>
 
+<!--Message Stuff-->
+
+
+<!--Container Stuff-->
 <div class="ui main text container segment">
     <div class="ui huge header"><%= blog.title %></div>
-    <div class="ui top attached">
-        <div class="item">
-            <img class="ui centered rounded image" src="<%= blog.image %>"></img>
-            <div class="content">
-                <span><%= blog.created.toDateString() %></span>
+        <div class="ui top attached">
+            <div class="item">
+                <img class="ui centered rounded image" src="<%= blog.image %>"></img>
+                <div class="content">
+                    <span><%= blog.created.toDateString() %></span>
+                </div>
+                <div class="description">
+                    <p><%- blog.body %></p>       
+                </div>
+                <a href="/blogs/<%= blog._id%>/edit" class="ui inverted blue button">
+                    <i class="edit outline icon"></i>
+                    Edit
+                </a>
+                <div id="btn_delete" class="ui inverted red button">
+                    <i class="trash alternate outline icon"></i>
+                    Delete
+                </div>
+                <form id="form_delete" action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
+                </form>
             </div>
-            <div class="description">
-                <p><%- blog.body %></p>       
-            </div>
-            <a href="/blogs/<%= blog._id%>/edit" class="ui orange button">Edit</a>
-            <form id="delete" action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
-                 <button class="negative ui button">Delete</button>
-            </form>
         </div>
     </div>
+</div>
+    
+<script>
+    $('#btn_delete').click(function(){
+        $('.ui.basic.modal').modal({
+            closable: false,
+            onDeny: function(){
+            },
+            onApprove: function() {
+              $('#form_delete').submit();
+            }
+        }).modal('show')
+    });
+</script>
+    
 <% include partials/footer %>
