@@ -22,19 +22,6 @@ var blogSchema = new mongoose.Schema({
 });
 var Blog = mongoose.model("Blog", blogSchema);
 
-//ADD A DEFAULT BLOG TO THE DB
-// Blog.create({
-//     title: "Test Blog",
-//     image: "https://pixabay.com/get/ea36b70c2ffc1c22d2524518b7444795ea76e5d004b0144390f4c070a6edb1_340.jpg",
-//     body: "Hello, I'm a test blog.Please ignore me :)"
-// }, function(err, blog) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("Add a test blog to db successfully!");
-//         console.log(blog);
-//     }
-// });
 
 //RESTFUL ROUTES
 app.get("/", function(req, res) {
