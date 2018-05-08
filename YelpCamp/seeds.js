@@ -34,7 +34,7 @@ function seedDB() {
                 }
                 else {
                     console.log("Wipe out all comments successfully");
-                    //Create new campgrounds & test comments
+                    //create new campgrounds through data
                     data.forEach(function(seed) {
                         Campground.create(seed, function(err, campground) {
                             if (err) {
@@ -44,13 +44,14 @@ function seedDB() {
                                 console.log("Added a new campground: " + campground.name);
                                 //add a test comment
                                 Comment.create({
-                                    text: "This place is greate, you should definately try it.",
+                                    text: "This place is great, you should definately try it.",
                                     author: "Homer"
                                 }, function(err, comment) {
                                     if (err) {
                                         console.log(err);
                                     }
                                     else {
+                                        //associate the comment to corresponding campground.
                                         campground.comments.push(comment);
                                         campground.save(function(err, ground) {
                                             if (err) {
