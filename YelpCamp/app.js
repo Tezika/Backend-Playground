@@ -45,7 +45,7 @@ app.post("/campgrounds", function(req, res) {
 
 //SHOW -- send a add form
 app.get("/campgrounds/new", function(req, res) {
-    res.render("new.ejs");
+    res.render("campground/new.ejs");
 });
 
 app.get("/campgrounds/:id", function(req, res) {
@@ -56,7 +56,22 @@ app.get("/campgrounds/:id", function(req, res) {
         }
         else {
             //redner the res with the campground.
-            res.render("show.ejs", { campground: foundCampground });
+            res.render("campground/show.ejs", { campground: foundCampground });
+        }
+    });
+});
+//===============
+//COMMENTS ROUTE
+//===============
+
+//NEW ROUTE
+app.get("/campgrounds/:id/comments/new", function(req, res) {
+    Campground.findById(req.params.id, function(err, foundCampground) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render("comments/new.ejs", { campground: foundCampground });
         }
     });
 });

@@ -18,7 +18,7 @@ app.get("/posts", function(req, res) {
     var posts = [
         { title: "Hi, there is the first post.", author: "Tezika" },
         { title: "And this is the second post.", author: "Violet" },
-        { title: "Em, here is the last post.", author: "Jeff" },
+        { title: "Emm..... here is the last post.", author: "Jeff" },
     ];
     res.render("posts", { postArr: posts });
 });

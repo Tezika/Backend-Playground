@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var userSchema = new mongoose.Schema({
     email: String,
     name: String,
+    
     //Assoicate the post by referencing.
     posts: [{
         type: mongoose.Schema.Types.ObjectId,

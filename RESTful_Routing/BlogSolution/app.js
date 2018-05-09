@@ -42,7 +42,6 @@ app.get("/blogs", function(req, res) {
 app.get("/blogs/new", function(req, res) {
     res.render("new");
 });
-
 //
 app.post("/blogs", function(req, res) {
     //santilize the blog's body

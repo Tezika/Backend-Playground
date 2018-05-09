@@ -4,7 +4,6 @@ mongoose.connect("mongodb://localhost/blog_demo_2");
 var Post = require("./models/post");
 var User = require("./models/user");
 
-
 Post.create({
     title: "How to cook the best burger pt.4",
     content: "blah blah blah blah"
