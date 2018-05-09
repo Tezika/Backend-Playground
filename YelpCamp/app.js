@@ -3,6 +3,7 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     Campground = require("./models/campground"),
+    Comment = require("./models/comment"),
     SeedDB = require("./seeds");
 
 mongoose.connect("mongodb://localhost/yelp_camp");
@@ -60,6 +61,7 @@ app.get("/campgrounds/:id", function(req, res) {
         }
     });
 });
+
 //===============
 //COMMENTS ROUTE
 //===============
@@ -72,6 +74,41 @@ app.get("/campgrounds/:id/comments/new", function(req, res) {
         }
         else {
             res.render("comments/new.ejs", { campground: foundCampground });
+        }
+    });
+});
+
+//POST THE NEW COMMENT
+app.post("/campgrounds/:id/comments", function(req, res) {
+    //lookup campground using ID
+    Campground.findById(req.params.id, function(err, foundCampground) {
+        if (err) {
+            console.log(err);
+            res.redirect("/campgrounds");
+        }
+        else {
+            //create a new comment.
+            Comment.create(req.body.comment, function(err, newComment) {
+                if (err) {
+                    console.log(err);
+                    res.redirect("/campgrounds");
+                }
+                else {
+                    //connect new comment to campground.
+                    foundCampground.comments.push(newComment);
+                    foundCampground.save(function(err, savedCampground) {
+                        if (err) {
+                            console.log(err);
+                            res.redirect("/campgrounds");
+                        }
+                        else {
+                            console.log("Associated a new comment with a campground successfully");
+                            //redirect camoground show page.
+                            res.redirect("/campgrounds/" + foundCampground._id);
+                        }
+                    });
+                }
+            });
         }
     });
 });
