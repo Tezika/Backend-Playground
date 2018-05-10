@@ -6,12 +6,8 @@ var Campground = require("../models/campground");
 // CAMPGROUND ROUTES
 // ==================
 
-router.get("/", function(req, res) {
-    res.render("landing.ejs");
-});
-
 //INDEX -- show all campgrounds
-router.get("/campgrounds", function(req, res) {
+router.get("/", function(req, res) {
     Campground.find({}, function(err, campgrounds) {
         if (err) {
             console.log(err);
@@ -24,7 +20,7 @@ router.get("/campgrounds", function(req, res) {
 });
 
 // CREATE -- add a new campground to db
-router.post("/campgrounds", function(req, res) {
+router.post("/", function(req, res) {
     var name = req.body.name;
     var img = req.body.img;
     var desc = req.body.desc;
@@ -39,11 +35,11 @@ router.post("/campgrounds", function(req, res) {
 });
 
 // SHOW -- send a add form
-router.get("/campgrounds/new", function(req, res) {
+router.get("/new", function(req, res) {
     res.render("campground/new.ejs");
 });
 
-router.get("/campgrounds/:id", function(req, res) {
+router.get("/:id", function(req, res) {
     // find the campground with provided ID.
     Campground.findById(req.params.id).populate("comments").exec(function(error, foundCampground) {
         if (error) {
@@ -56,6 +52,7 @@ router.get("/campgrounds/:id", function(req, res) {
     });
 });
 
+// middleware
 function createNewCampground(campground, callback) {
     Campground.create(campground, function(err, campground) {
         if (err) {

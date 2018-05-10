@@ -38,9 +38,13 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use(campgroundRouter);
-app.use(commentsRouter);
-app.use(authRouter);
+app.get("/", function(req, res) {
+    res.render("landing");
+});
+
+app.use("/campgrounds", campgroundRouter);
+app.use("/campgrounds/:id/comments", commentsRouter);
+app.use("/", authRouter);
 
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("Open the YelpCamp server successfully!");
