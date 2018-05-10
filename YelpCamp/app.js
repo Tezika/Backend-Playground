@@ -28,6 +28,12 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// transfer the user to every individual route.
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
+
 app.get("/", function(req, res) {
     res.render("landing.ejs");
 });
@@ -40,7 +46,7 @@ app.get("/campgrounds", function(req, res) {
         }
         else {
             console.log("Retrieve all campgrounds from the database successfully.");
-            res.render("index.ejs", { campgrounds: campgrounds })
+            res.render("index.ejs", { campgrounds: campgrounds });
         }
     });
 });
