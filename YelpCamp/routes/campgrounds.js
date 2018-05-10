@@ -34,7 +34,7 @@ router.post("/", function(req, res) {
         });
 });
 
-// SHOW -- send a add form
+// SHOW -- send an addition form
 router.get("/new", function(req, res) {
     res.render("campground/new.ejs");
 });
@@ -52,7 +52,7 @@ router.get("/:id", function(req, res) {
     });
 });
 
-// middleware
+// a function serves to create a new campground
 function createNewCampground(campground, callback) {
     Campground.create(campground, function(err, campground) {
         if (err) {
