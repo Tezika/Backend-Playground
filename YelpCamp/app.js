@@ -27,6 +27,7 @@ app.use(require("express-session")({
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -34,7 +35,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// transfer the user to every individual route.
+// transfer the logged user to every individual route.
 app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
     next();

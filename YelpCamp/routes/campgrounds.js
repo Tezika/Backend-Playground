@@ -84,6 +84,20 @@ router.put("/:id", isLoggedIn, function(req, res) {
     });
 });
 
+// DESTORY
+router.delete("/:id", isLoggedIn, function(req, res) {
+    Campground.findByIdAndRemove(req.params.id, function(err, campground) {
+        if (err) {
+            console.log(err);
+            res.redirect("/campgrounds");
+        }
+        else {
+            console.log("Remove the campground, " + campground.name + " ,successfully.");
+            res.redirect("/campgrounds");
+        }
+    });
+});
+
 // a function serves to create a new campground
 function createNewCampground(campground, callback) {
     Campground.create(campground, function(err, campground) {
