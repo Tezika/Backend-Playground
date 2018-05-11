@@ -8,6 +8,7 @@ var express = require("express"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
+    flash = require("connect-flash"),
     SeedDB = require("./seeds");
 
 var campgroundRouter = require("./routes/campgrounds"),
@@ -19,6 +20,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
+
 // SeedDB();
 
 // PASSPORT CONFIGURATION
@@ -34,6 +36,8 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(flash());
 
 // transfer the logged user to every individual route.
 app.use(function(req, res, next) {
