@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router({ mergeParams: true });
 var Campground = require("../models/campground");
 var Comment = require("../models/comment");
-var middleware = require("../middleware/index.js")
+var middleware = require("../middleware/index.js");
 
 //===============
 //COMMENTS ROUTE
@@ -81,6 +81,7 @@ router.put("/:comment_id", middleware.checkCommentOwnership, function(req, res) 
             res.redirect("back");
         }
         else {
+            req.flash("success", "Comment updated");
             res.redirect("/campgrounds/" + req.params.id);
         }
     });
@@ -94,6 +95,7 @@ router.delete("/:comment_id", middleware.checkCommentOwnership, function(req, re
             res.redirect("back");
         }
         else {
+            req.flash("success", "Comment deleted");
             res.redirect("/campgrounds/" + req.params.id);
         }
     });
