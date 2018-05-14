@@ -86,6 +86,7 @@ router.put("/:id", middleware.checkCampgroundOwnership, function(req, res) {
     });
 });
 
+
 // DESTROY
 router.delete("/:id", middleware.checkCampgroundOwnership, function(req, res) {
     Campground.findByIdAndRemove(req.params.id, function(err, campground) {
